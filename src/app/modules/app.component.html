@@ -1,0 +1,46 @@
+<header class="fixed-top">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.themoviedb.org/assets/static_cache/02a9430b88975cae16fcfcc9cf7b5799/images/v4/logos/primary-green.svg"
+                    width="45" height="40" alt="">
+            </a>
+
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/filmes">Filmes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="search">
+        <div class="container">
+            <form class="form-inline">
+                <div class="input-group w-100">
+                    <span class="fa fa fa-search" aria-hidden="true"></span>
+                    <ng-template #rt let-r="result" let-t="term">
+                        <img [src]="'https://image.tmdb.org/t/p/w45_and_h67_bestv2/' + r.poster_path"> {{ r.title}}
+                    </ng-template>
+
+                    <input type="search" name="search" class="form-control" placeholder="Buscar por um filme, série ou pessoa" [class.is-invalid]="searchFailed"
+                        [ngbTypeahead]="search" [inputFormatter]="formatter" [resultTemplate]="rt" [(ngModel)]="model" (selectItem)="onSelect($event.item)"
+                    />
+
+                </div>
+            </form>
+        </div>
+    </div>
+</header>
+
+<div style="margin-top: 110px;">
+    <router-outlet></router-outlet>
+</div>
+
+<footer></footer>

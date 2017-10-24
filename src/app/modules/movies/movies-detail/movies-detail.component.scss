@@ -1,0 +1,120 @@
+@import '../../variables';
+
+$percent-18: 18%;
+
+.banner {
+    color: $white;
+    img {
+        &.img-banner {
+            width: 100%;
+            height: 520px;
+            z-index: -1;
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            // filter: opacity(100) grayscale(100%) contrast(130%);
+        }
+    }
+    .title {
+        h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 2.4em;
+            line-height: 1.1em;
+            font-weight: 700;
+            display: inline-block;
+        }
+    }
+    .release-date {
+        opacity: 0.6;
+        font-size: 1.7em;
+        font-weight: 400;
+    }
+    h3 {
+        font-weight: 600;
+        line-height: 1.3em;
+        font-size: 1.3em;
+    }
+}
+
+.body {
+    h3 {
+        font-weight: 600;
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+    .gray {
+        background-color: #f1f1f1;
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 20px;
+            padding-bottom: 2px;
+            box-sizing: border-box;
+            line-height: 1em;
+            strong {
+                display: block;
+                padding-bottom: 6px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .white {
+        background-color: $white;
+        .scroll {
+            width: 61vw;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            white-space: nowrap;
+            box-sizing: border-box;
+            padding-bottom: 16px;
+            padding-right: 40px;
+        }
+        .recommendation {
+            padding-left: $percent-18;
+            .card-body {
+                height: 40px;
+                padding-left: 5px;
+                padding-right: 5px;
+                .flex {
+                    margin-top: -12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .title {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: inline-block;
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+        .cast {
+            padding-left: $percent-18;
+        }
+    }
+    section {
+        margin-bottom: 30px;
+    }
+
+    .badge {
+        font-size: 0.9em;
+        font-weight: 400;
+        margin-top: 10px;
+        // background: $white;
+    }
+    
+    h4 {
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+

@@ -1,0 +1,44 @@
+@import './variables';
+
+.navbar {
+    background-color: $navbar-bg;
+    a {
+        font-weight: $font-weight-600;
+        color: $white;
+    }
+}
+
+.search {
+    width: 100%;
+    background-color: $white;
+    height: 46px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #dedede;
+    box-sizing: border-box;
+    span {
+        font-size: 25px;
+        color: #acacac;
+        padding-top: 5px;
+        &:hover {
+            color: $dark;
+        }
+    }
+    input {
+        border: none;
+        font-style: italic;
+        &:focus {
+            box-shadow: 0 0 0 0rem rgba(255, 0, 0, 0); 
+        }        
+    }
+}
+
+

@@ -1,0 +1,108 @@
+<div class="container pt-4">
+  <h2>Descobrir Novos Filmes e Séries</h2>
+
+  <div class="filter">
+    <form class="mt-4" autocomplete="off">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="year">Ano</label>
+            <select name="year" id="year" class="form-control" [(ngModel)]="year" (change)="onChangeYear($event)">
+              <option value="0">Nenhum</option>
+              <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="order">Ordenar por</label>
+            <select name="order" id="order" class="form-control" [(ngModel)]="order" (change)="onChangeOrder($event)">
+              <option value="popularity.desc">Popularidade (maior)</option>
+              <option value="popularity.asc">Popularidade (menor)</option>
+              <option value="vote_average.desc">Avaliação (melhor)</option>
+              <option value="vote_average.asc">Avaliação (pior)</option>
+              <option value="primary_release_date.desc">Lançamento (novo)</option>
+              <option value="primary_release_date.asc">Lançamento (antigo)</option>
+              <option value="title.asc">Título (A–Z)</option>
+              <option value="title.desc">Título (Z–A)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="genre">Gêneros</label>
+            <input type="text" id="genre" name="genre" class="form-control" disabled>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="ano">Palavras-chave</label>
+            <input type="text" id="ano" name="ano" class="form-control" disabled>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="result">
+    <div class="card-deck">
+      <div class="card mb-3" *ngFor="let movie of movies">
+        <div class="row">
+          <div class="col-lg-5 col-md-12 col-xs-12">
+            <!-- <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2{{ movie.poster_path }}" alt="movie.title"> -->
+            <a [routerLink]="['/filmes', movie.id]" >
+              <img [src]="movie.poster_path != null ? 'https://image.tmdb.org/t/p/w185_and_h278_bestv2' + movie.poster_path : 'http://via.placeholder.com/290x227'"
+                alt="movie.title">
+            </a>
+          </div>
+          <div class="col-lg-7 col-md-12 col-xs-12 p-3">
+
+            <p class="card-text title mb-0 pl-2">
+              <a [routerLink]="['/filmes', movie.id]"> {{ movie.title }} </a>
+              <span class="pr-2">
+                {{ movie.vote_average }}
+                <span class="fa fa-star"></span>
+              </span>
+            </p>
+
+            <p class="card-text d-flex justify-content-md-between release-date pl-2">
+              <span>
+                <span class="fa fa-calendar"></span>
+                {{ movie.release_date | date: 'y' }}
+              </span>
+              <span class="pr-3 font-italic"> {{ movie.vote_average }} </span>
+            </p>
+
+            <p class="card-text overview pr-3 pl-2">
+              {{ (movie.overview.length > 160 ? (movie.overview | slice:0:160) + '...' : movie.overview.length == 0 ? defaultOverview :
+              movie.overview ) }}
+            </p>
+
+            <p class="more">
+              <a [routerLink]="['/filmes', movie.id]"> Mais informações </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-4 pb-5">
+    <span>
+      Atualmente na página: {{ page }} de {{ totalPages | number }} ({{ totalResults | number }} resultados)
+    </span>
+
+    <span class="float-right">
+      <a href="javascript:void(0);" class="page" (click)="onPreviewPage()" *ngIf="page > 1">
+        <i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i>
+      </a>
+
+      <a href="javascript:void(0);" class="ml-4 page" (click)="onNextPage()" *ngIf="page < totalPages">
+        <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>
+      </a>
+    </span>
+  </div>
+</div>

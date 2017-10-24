@@ -1,0 +1,133 @@
+<div class="banner">
+  <img class="img-banner" [src]="'https://image.tmdb.org/t/p/w1400_and_h450_bestv2' + movie.backdrop_path" alt="movie.title">
+
+  <div class="container pt-4">
+    <div class="row">
+
+      <div class="col-4">
+        <a href="javascript:void(0)">
+          <img [src]="'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + movie.poster_path" alt="movie.title">
+        </a>
+      </div>
+
+      <div class="col-8">
+        <div class="row title">
+          <span>
+            <h1 dir="auto">{{ movie.title }}</h1>
+          </span>
+          <span class="release-date">({{ movie.release_date | date: 'y' }})</span>
+        </div>
+
+        <div class="row actions mb-4">
+
+        </div>
+
+        <div class="row info">
+          <h3>Sinopse</h3>
+          <div class="overview">
+            <p>
+              {{ movie.overview }}
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3>Equipe técnica principal</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body mt-5 col-12">
+  <div class="row">
+    <div class="col-9 white">
+      <div class="row">
+        <div class="cast">
+          <h3>Elenco Principal</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="recommendation">
+          <h3>Recomendações</h3>
+          <div class="scroll">
+            <div class="row flex-row flex-nowrap">
+              <div class="col-4" *ngFor="let recommendation of movie.recommendations">
+                <div class="card card-block border-0">
+                  <a [routerLink]="['/filmes', recommendation.id]" title="{{ recommendation.title }}">
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w250_and_h141_bestv2/{{recommendation.backdrop_path}}" alt="recommendation.title">
+                  </a>
+                  <div class="card-body">
+                    <p class="flex">
+                      <a class="title" [routerLink]="['/filmes', recommendation.id]" title="{{ recommendation.title }}">
+                        {{ recommendation.title }}
+                      </a>
+
+                      <span>
+                        {{ movie.vote_average }}
+                        <span class="fa fa-star"></span>
+                      </span>
+
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gray col-3 float-right pt-5">
+      <h4>Informações</h4>
+
+      <p>
+        <strong>Situação</strong>
+        {{ movie.status }}
+      </p>
+
+      <p>
+        <strong>Idioma Original</strong>
+        {{ movie.original_language }}
+      </p>
+
+      <p>
+        <strong>Duração</strong>
+        {{ movie.runtimeFormated }}
+      </p>
+
+      <p>
+        <strong>Orçamento</strong>
+        {{ movie.budget | currency: 'USD': true }}
+      </p>
+
+      <p>
+        <strong>Receita</strong>
+        {{ movie.revenue | currency: 'USD': true }}
+      </p>
+
+      <p>
+        <strong> Site Oficial: </strong>
+        <a [href]="movie.homepage" target="_blank" class="d-block">{{ movie.homepage }}</a>
+      </p>
+
+      <section class="genres">
+        <h4> Gêneros </h4>
+
+        <a href="#" class="badge badge-light mr-2" *ngFor="let genre of movie.genres">
+          {{ genre.name }}
+        </a>
+      </section>
+
+      <section class="key-words">
+        <h4> Palavras-chave </h4>
+
+        <a href="#" class="badge badge-light mr-2" *ngFor="let keyword of movie.keywords">
+          {{ keyword.name }}
+        </a>
+      </section>
+    </div>
+  </div>
+</div>
